@@ -86,6 +86,7 @@ public class Hangman {
                 highScoresList.add(userRecord);
             }
             System.out.println("High scores");
+            Collections.reverse(highScoresList);
             for(int i=0;i<Math.min(highScoresList.size(), 10);i++)
                 System.out.println(highScoresList.get(i));
         }
@@ -116,6 +117,7 @@ public class Hangman {
     private void guessLetter(){
         Scanner scanner = new Scanner(System.in);
         String playerInput = scanner.next().toLowerCase();
+        char [] secondPartOfPlayerInput = scanner.next().toLowerCase().toCharArray();
         boolean isLetterGuessed = false;
 
         if (playerInput.length() == 1) {
@@ -131,7 +133,8 @@ public class Hangman {
             }
         }
         else{
-            if(playerInput.equals(correctWordWithSpaces)){
+            String correctPlayerInput = playerInput + String.valueOf(secondPartOfPlayerInput);
+            if(correctPlayerInput.equals(correctWordWith)){
                 winGame();
             }
         }
